@@ -50,6 +50,13 @@
         $(function () {
            'use strict'
             var api = 'https://webapplication2220210825125715ee.azurewebsites.net//api/Questions';
+            var myHeaders = new Headers();
+            var requestOptions = {
+                method: 'DELETE',
+                redirect: 'follow'
+            };
+
+           
             $.get(api, function (data, status) {
                 for (let i = 0; i < data.length; i++) {
                     var id = "name" + data[i].Id;
@@ -74,17 +81,21 @@
             $('body').on('click', '.delete', function (e) {
                 e.preventDefault();
                 var queryString = $('form').serialize();
-                $.ajax({
-                    url: 'https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=' + this.id + '',
-                    type: 'DELETE',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        alert("הצליח");
-                    },
-                    Error : function (e) {
-                        alert("לא הצליח")
-                    }
-                });
+                //$.ajax({
+                    fetch("https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id="+ this.id + "", requestOptions)
+                    .then(response => response.text())
+                        .then(result => console.log(result))
+                        .catch(error => console.log('error', error));
+                    //url: 'https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=' + this.id + '',
+                    //type: 'DELETE',
+                    //contentType: 'application/json',
+                    //success: function (result) {
+                    //    alert("הצליח");
+                    //},
+                    //Error : function (e) {
+                    //    alert("לא הצליח")
+                    //}
+                //});
             });
             //var settings = {
             //    "url": "https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=11",

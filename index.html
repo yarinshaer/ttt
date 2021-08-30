@@ -76,7 +76,7 @@
                 e.preventDefault();
                 var queryString = $('form').serialize();
                 $.ajax({
-                    url: api,
+                    url: 'https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=' + this.id+'',
                     type: 'delete',
                     dataType: 'json',
                     //contentType: 'application/json',

@@ -72,25 +72,31 @@
              $("#sppiner").hide();
             });
             $('body').on('click', '.delete', function (e) {
-                console.log(this.id);
-                console.log('click');
                 e.preventDefault();
                 var queryString = $('form').serialize();
                 $.ajax({
-                    url: 'https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=' + this.id+'',
-                    type: 'delete',
-                    dataType: 'json',
-                    //contentType: 'application/json',
-                    success: function (data) {
-                        alert("נמחק בהצלחה");
+                    url: 'https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=' + this.id + '',
+                    type: 'DELETE',
+                    success: function (result) {
+                        alert("הצליח");
                     },
-                    error: function (data) {
-                        alert("לא הצליח למחוק");
-                    },
-                    data: queryString
+                    Error : function (e) {
+                        alert("לא הצליח")
+                    }
                 });
             });
+            //var settings = {
+            //    "url": "https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=11",
+            //    "method": "DELETE",
+            //    "timeout": 0,
+            //    "headers": {
+            //        "Cookie": "ARRAffinity=9072c805cf2bc663ced034398777a5d5f6115a51e64a73b6fc69b73f64c8660e; ARRAffinitySameSite=9072c805cf2bc663ced034398777a5d5f6115a51e64a73b6fc69b73f64c8660e"
+            //    },
+            //};
 
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
             })
 
     </script>

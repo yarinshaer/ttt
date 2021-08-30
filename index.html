@@ -49,20 +49,18 @@
     <script>
         $(function () {
            'use strict'
-            var api = 'https://webapplication2220210825125715ee.azurewebsites.net//api/Questions';
+            var api = 'https://webapplication2220210830153002hhj.azurewebsites.net/api/Questions';
             var myHeaders = new Headers();
-            var requestOptions = {
-                method: 'DELETE',
-                redirect: 'follow'
-            };
+            var apiUrl =''
+            function remove(apiUrl) {
+                fetch(apiUrl, {
+                    method: 'DELETE'
+                }).then(() => {
+                    console.log('removed');
+                }).catch(err => {
+                    console.error(err)
+                });
 
-            const deleteMethod = {
-                method: 'DELETE', // Method itself
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
-                },
-                // No need to have body, because we don't send nothing to the server.
-            }
             $.get(api, function (data, status) {
                 for (let i = 0; i < data.length; i++) {
                     var id = "name" + data[i].Id;
@@ -86,13 +84,9 @@
             });
             $('body').on('click', '.delete', function (e) {
                 e.preventDefault();
-                var url = 'https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=' + this.id+'',
-              
-                // Make the HTTP Delete call using fetch api
-                fetch(url, deleteMethod)
-                    .then(response => response.json())
-                    .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
-                    .catch(err => console.log(err))
+                var url = 'https://webapplication2220210830153002hhj.azurewebsites.net//DeleteQuestions?id=' + this.id + '';
+                remove(url);
+
             });
             //var settings = {
             //    "url": "https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=11",

@@ -56,7 +56,13 @@
                 redirect: 'follow'
             };
 
-           
+            const deleteMethod = {
+                method: 'DELETE', // Method itself
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+                },
+                // No need to have body, because we don't send nothing to the server.
+            }
             $.get(api, function (data, status) {
                 for (let i = 0; i < data.length; i++) {
                     var id = "name" + data[i].Id;
@@ -81,13 +87,7 @@
             $('body').on('click', '.delete', function (e) {
                 e.preventDefault();
                 var url = 'https://webapplication2220210830153002hhj.azurewebsites.net/DeleteQuestions?id=' + this.id+'',
-                const deleteMethod = {
-                    method: 'DELETE', // Method itself
-                    headers: {
-                        'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
-                    },
-                    // No need to have body, because we don't send nothing to the server.
-                }
+              
                 // Make the HTTP Delete call using fetch api
                 fetch(url, deleteMethod)
                     .then(response => response.json())

@@ -58,6 +58,9 @@
                         + "<button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='#" + id+"' aria-expanded='true' aria-controls='collapseOne'>"
                         + ""+data[i].Title+""
                         + "</button>"
+                        + "<button class='btn btn-alert delete ' name="+id+" type='button'  id=" + id + "' >"
+                        + "מחיקה"
+                        + "</button>"
                         + " </h2 >"
                         + "<div id='" + id+"' class='accordion-collapse collapse ' aria-labelledby='headingOne' data-bs-parent='#accordionExample'>"
                         + "  <div class='accordion-body'>"
@@ -68,6 +71,25 @@
                 }
              $("#sppiner").hide();
             });
+            $('body').on('click', '.delete', function (e) {
+                console.log('click');
+                e.preventDefault();
+                var queryString = $('form').serialize();
+                $.ajax({
+                    url: api,
+                    type: 'delete',
+                    dataType: 'json',
+                    //contentType: 'application/json',
+                    success: function (data) {
+                        alert("נמחק בהצלחה");
+                    },
+                    error: function (data) {
+                        alert("לא הצליח למחוק");
+                    },
+                    data: queryString
+                });
+            });
+
             })
 
     </script>

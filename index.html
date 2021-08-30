@@ -58,7 +58,7 @@
                         + "<button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='#" + id+"' aria-expanded='true' aria-controls='collapseOne'>"
                         + ""+data[i].Title+""
                         + "</button>"
-                        + "<button class='btn btn-alert delete ' name="+id+" type='button'  id=" + id + "' >"
+                        + "<button class='btn btn-alert delete ' name=" + id + " type='button'  id=" + data[i].Id + "' >"
                         + "מחיקה"
                         + "</button>"
                         + " </h2 >"
@@ -72,6 +72,7 @@
              $("#sppiner").hide();
             });
             $('body').on('click', '.delete', function (e) {
+                console.log(this.id);
                 console.log('click');
                 e.preventDefault();
                 var queryString = $('form').serialize();

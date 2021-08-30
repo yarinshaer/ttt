@@ -48,10 +48,8 @@
     -->
     <script>
         $(function () {
-           'use strict'
+            'use strict'
             var api = 'https://webapplication2220210830153002hhj.azurewebsites.net/api/Questions';
-            var myHeaders = new Headers();
-            var apiUrl =''
             function remove(apiUrl) {
                 fetch(apiUrl, {
                     method: 'DELETE'
@@ -60,6 +58,7 @@
                 }).catch(err => {
                     console.error(err)
                 });
+            };
 
             $.get(api, function (data, status) {
                 for (let i = 0; i < data.length; i++) {
